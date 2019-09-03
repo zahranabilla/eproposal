@@ -1,0 +1,132 @@
+<!-- Revision Modal -->
+<div class="modal fade" id="revision-modal" tabindex="-1" role="dialog" aria-labelledby="revisionModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="revisionModalLabel">Revisi Proposal</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h4>Poin-poin revisi</h4>
+                <ol id="org-revisions"></ol>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button id="btn-modal-revision" type="button" class="btn btn-primary">Simpan</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Revise Modal -->
+<div class="modal fade" id="revise-modal" tabindex="-1" role="dialog" aria-labelledby="reviseModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="reviseModalLabel">Revisi Proposal</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="revise-name">Poin Revisi</label>
+                        <input type="text" class="form-control" id="revise-name" placeholder="Masukan revisi">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button id="btn-modal-revise" type="button" class="btn btn-primary">Simpan</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(() => {
+            $(document).on('click', '#btn-modal-revise', () => {
+                let name = $('#revise-name')
+                let dataRevised = name.attr('data-revised')
+                // Get the number of <li> for <a id>
+                let counter = $('#revisions li').length
+
+                // Create Edit Button for every revision
+                let i = '<i class="fa fa-pencil"></i>'
+                let a = '<a id="revision-' + counter++ + '" class="revision-item">' + i + '</a>'
+                let editButton = '<span class="badge badge-warning badge-pill">' + a + '</span>'
+
+                i = '<i class="fa fa-trash"></i>'
+                a = '<a id="delete-revision-' + counter++ + '" class="delete-revision-item">' + i + '</a>'
+                let deleteButton = '<span class="badge badge-danger badge-pill">' + a + '</span>'
+
+                let content = name.val() + ' ' + editButton + ' ' + deleteButton
+                let li = '<li>' + content + '</li>'
+
+                // For some browsers, `attr` is undefined; for others,
+                // `attr` is false.  Check for both.
+                if (typeof dataRevised === typeof undefined || dataRevised === false) {
+                    // Create <li> from input value
+                    $('#revisions').append(li)
+                } else {
+                    $('#revisions li').eq(dataRevised).html(content)
+                }
+
+                // Set input to empty again
+                name.val('')
+
+                $('#revise-modal').modal('toggle')
+
+            })
+
+            $(document).on('click', '.revision-item', (event) => {
+                var target = $(event.target)
+
+                $('#revise-modal').modal('show')
+
+                let name = $('#revise-name')
+
+                id = target.parent().attr('id').replace("revision-", "")
+
+                $(name).attr("data-revised", id);
+
+                name.val(target.parent().parent().parent().text())
+            })
+
+
+            $(document).on('click', '.delete-revision-item', (event) => {
+                var target = $(event.target)
+                console.log(target.parent().parent().parent().remove())
+            })
+
+            $('#floating-pencil').click(() => {
+                let name = $('#revise-name').val('')
+                $('#revise-name').removeAttr("data-revised");
+            })
+
+            $('#btn-revise').click(() => {
+                $("div#divLoading").addClass('show');
+
+                let revisions = $('#revisions li')
+                let revisionNames = []
+                revisions.each((index, value) => {
+                    revisionNames.push($.trim($(value).text()))
+                })
+
+                let id = $('#proposal-id').text()
+
+                $.ajax({
+                    url: "/proposal/ajax-revise",
+                    method: "POST",
+                    data: { id: id, revisions: revisionNames }
+                }).done(result => {
+                    $("div#divLoading").removeClass('show');
+                    window.location.href = "/";
+                })
+            })
+        })
+    </script>
+</div>

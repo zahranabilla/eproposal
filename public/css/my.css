@@ -1,0 +1,110 @@
+.navbar {
+    margin-bottom: 2em;
+}
+
+table {
+    margin: 0 auto;
+}
+
+/* Hide all steps by default: */
+.tab {
+    display: none;
+}
+
+/* Make circles that indicate the steps of the form: */
+.step {
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbbbbb;
+    border: none;
+    border-radius: 50%;
+    display: inline-block;
+    opacity: 0.5;
+}
+
+/* Mark the active step: */
+.step.active {
+    opacity: 1;
+}
+
+/* Mark the steps that are finished and valid: */
+.step.finish {
+    background-color: #4CAF50;
+}
+
+#divLoading {
+    display: none;
+}
+
+#divLoading.show {
+    display: block;
+    position: fixed;
+    z-index: 100;
+    background-image: url('/static/images/ajax-loader.gif');
+    background-color: #666;
+    opacity: 0.4;
+    background-repeat: no-repeat;
+    background-position: center;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    top: 0;
+}
+
+#loadinggif.show {
+    left: 50%;
+    top: 50%;
+    position: absolute;
+    z-index: 101;
+    width: 32px;
+    height: 32px;
+    margin-left: -16px;
+    margin-top: -16px;
+}
+
+div.content {
+    width: 1000px;
+    height: 1000px;
+}
+
+.show {
+    display: block;
+}
+
+.hide {
+    display: none;
+}
+
+.skeleton {
+    background-image: linear-gradient(90deg, #ddd 0px, #e8e8e8 40px, #ddd 80px);
+    animation: shine-line 1.6s infinite linear;
+}
+
+@keyframes shine-line {
+    0% {
+        background-position: -32px;
+    }
+
+    40%,
+    100% {
+        background-position: 60rem;
+    }
+}
+
+.float{
+	position:fixed;
+	width:60px;
+	height:60px;
+	bottom:40px;
+	right:40px;
+	background-color:red;
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+	box-shadow: 2px 2px 3px #999;
+}
+
+.my-float{
+	margin-top:22px;
+}

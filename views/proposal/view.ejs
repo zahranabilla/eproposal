@@ -1,0 +1,171 @@
+<% include ../partials/header %>
+
+<div id="proposal-id" style="visibility: hidden"><%= proposal.id %></div>
+
+<h1 id="proposal-name" class="text-center"></h1>
+<br />
+<hr />
+
+<btn type="btn" class="btn btn-danger btn-edit" id="btn-edit-proposal" data-edit="proposal"><i class="fa fa-pencil"></i>
+</btn>
+<div class="row">
+    <div class="col-2">
+        Tema:
+    </div>
+    <div id="proposal-theme" class="col"></div>
+</div>
+
+<div class="row">
+    <div class="col-2">
+        Tanggal:
+    </div>
+    <div id="proposal-date" class="col"></div>
+</div>
+
+<div class="row">
+    <div class="col-2">
+        Tempat:
+    </div>
+    <div id="proposal-place" class="col"></div>
+</div>
+
+<div class="row">
+    <div class="col-2">
+        Bentuk Kegiatan:
+    </div>
+    <div id="proposal-forms" class="col"></div>
+</div>
+<br />
+<hr />
+
+<btn type="btn" class="btn btn-danger btn-edit" id="btn-edit-backgrounds" data-edit="proposal"><i
+        class="fa fa-pencil"></i></btn>
+<h4>Latar Belakang</h4>
+<ol id="proposal-backgrounds"></ol>
+<br />
+<hr />
+
+<btn type="btn" class="btn btn-danger btn-edit" id="btn-edit-purposes" data-edit="purpose"><i
+    class="fa fa-pencil"></i></btn>
+<h4>Tujuan</h4>
+<ol id="proposal-purposes"></ol>
+<br />
+<hr />
+
+<h4>Peserta Kegiatan</h4>
+<ol id="proposal-participants"></ol>
+<br />
+<hr />
+
+<h4>Susunan Kepanitiaan</h4>
+<ol id="proposal-committees"></ol>
+<br />
+<hr />
+
+<h4>Jadwal Kegiatan</h4>
+<div class="table-responsive">
+    <table id="table-schedule" class="table">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Rencana Kegiatan</th>
+                <th>Waktu</th>
+                <th>PiC</th>
+            </tr>
+        </thead>
+        <tbody id="proposal-schedules"></tbody>
+    </table>
+</div>
+<br />
+<hr />
+
+<h4>Susunan Acara</h4>
+<div class="table-responsive">
+    <table id="table-rundown" class="table">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Waktu</th>
+                <th>Kegiatan</th>
+                <th>PiC</th>
+                <th>Keterangan</th>
+            </tr>
+        </thead>
+        <tbody id="proposal-rundowns"></tbody>
+    </table>
+</div>
+<br />
+<hr />
+
+<h4>Pengeluaran</h4>
+<div class="table-responsive">
+    <table id="table-budget" class="table">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Divisi</th>
+                <th>Keterangan</th>
+                <th>Jumlah</th>
+                <th>Harga Satuan</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody id="proposal-budgets"></tbody>
+    </table>
+</div>
+<br />
+<hr />
+
+
+<h4>Pendapatan</h4>
+<div class="table-responsive">
+    <table id="table-income" class="table">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Keterangan</th>
+                <th>Jumlah</th>
+                <th>Harga Satuan</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody id="proposal-incomes"></tbody>
+    </table>
+</div>
+<br />
+<hr />
+
+<% if (user.roles == "coach") { %>
+<a id="floating-pencil" href="#" class="float" data-toggle="modal" data-target="#revise-modal">
+    <i class="fa fa-pencil my-float"></i>
+</a>
+<% } else { %>
+<a id="floating-revision" href="#" class="float" data-toggle="modal" data-target="#revision-modal">
+    <i class="fa fa-list my-float"></i>
+</a>
+<% } %>
+
+<% if (user.roles == "coach") { %>
+<h4>Poin-poin revisi</h4>
+<ol id="revisions"></ol>
+<br />
+<hr />
+<% } %>
+
+<% if (user.roles == "organization") { %>
+<button id="btn-propose" type="button" class="btn btn-primary btn-lg btn-block">Ajukan</button>
+<% } else if (user.roles == "coach") { %>
+<button id="btn-revise" type="button" class="btn btn-primary btn-lg btn-block">Revisi</button>
+<% } %>
+<hr />
+
+<div id="divLoading">
+</div>
+
+<% include ../partials/footer %>
+
+<% include modals/edit %>
+
+<% include modals/revision %>
+
+<script src="/static/js/proposal/view.js"></script>

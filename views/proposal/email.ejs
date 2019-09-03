@@ -1,0 +1,179 @@
+<h1 class="text-center">
+    <%= proposal.name %><br />
+</h1>
+<hr />
+
+<div class="row">
+    <div class="col-2">
+        Tema: <b><%= proposal.theme %></b>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-2">
+        Tanggal: <b><%= proposal.date %></b>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-2">
+        Tempat: <b><%= proposal.place %></b>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-2">
+        Bentuk Kegiatan: <b><%= proposal.forms %></b>
+    </div>
+</div>
+<br />
+<hr />
+
+<h4>Latar Belakang</h4>
+<ol>
+    <% proposal.proposalBackgrounds.forEach(background => { %>
+    <li><%= background.name %></li>
+    <% }) %>
+</ol>
+<br />
+<hr />
+
+<h4>Tujuan</h4>
+<ol>
+    <% proposal.proposalPurposes.forEach(purpose => { %>
+    <li><%= purpose.name %></li>
+    <% }) %>
+</ol>
+<br />
+<hr />
+
+<h4>Peserta Kegiatan</h4>
+<ol>
+    <% proposal.proposalParticipants.forEach(participant => { %>
+    <li><%= participant.name %>: <b><%= participant.number %></b> Orang</li>
+    <% }) %>
+</ol>
+<br />
+<hr />
+
+<h4>Peserta Kegiatan</h4>
+<ol>
+    <% proposal.proposalCommittees.forEach(committee => { %>
+    <li><%= committee.position %>: <b><%= committee.name %></b></li>
+    <% }) %>
+</ol>
+<br />
+<hr />
+
+<h4>Jadwal Kegiatan</h4>
+<div class="table-responsive">
+    <table id="table-schedule" class="table" border="1">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Rencana Kegiatan</th>
+                <th>Waktu</th>
+                <th>PiC</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% proposal.proposalSchedules.forEach((schedule, index) => { %>
+            <tr>
+                <td width="10%"><%= ++index %></td>
+                <td><%= schedule.name %></td>
+                <td width="20%"><%= schedule.date %></td>
+                <td width="20%"><%= schedule.pic %></td>
+            </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</div>
+<br />
+<hr />
+
+<h4>Susunan Acara</h4>
+<div class="table-responsive">
+    <table id="table-rundown" class="table" border="1">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Waktu</th>
+                <th>Kegiatan</th>
+                <th>PiC</th>
+                <th>Keterangan</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% proposal.proposalRundowns.forEach((rundowns, index) => { %>
+            <tr>
+                <td width="10%"><%= ++index %></td>
+                <td><%= rundowns.start %> - <%= rundowns.finish %></td>
+                <td width="20%"><%= rundowns.name %></td>
+                <td width="20%"><%= rundowns.pic %></td>
+                <td width="20%"><%= rundowns.notes %></td>
+            </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</div>
+<br />
+<hr />
+
+<h4>Pengeluaran</h4>
+<div class="table-responsive">
+    <table id="table-budget" class="table" border="1">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Divisi</th>
+                <th>Keterangan</th>
+                <th>Jumlah</th>
+                <th>Harga Satuan</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% proposal.proposalBudgets.forEach((budget, index) => { %>
+            <tr>
+                <td width="10%"><%= ++index %></td>
+                <td><%= budget.division.name %></td>
+                <td><%= budget.name %></td>
+                <td width="20%"><%= budget.quantity %></td>
+                <td width="20%" class="money"><%= budget.price %></td>
+                <td width="20%" class="money"><%= budget.total %></td>
+            </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</div>
+<br />
+<hr />
+
+<h4>Pendapatan</h4>
+<div class="table-responsive">
+    <table id="table-income" class="table" border="1">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Keterangan</th>
+                <th>Jumlah</th>
+                <th>Harga Satuan</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% proposal.proposalIncomes.forEach((income, index) => { %>
+            <tr>
+                <td width="10%"><%= ++index %></td>
+                <td><%= income.name %></td>
+                <td width="20%"><%= income.quantity %></td>
+                <td width="20%" class="money"><%= income.amount %></td>
+                <td width="20%" class="money"><%= income.total %></td>
+            </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</div>
+<br />
+<hr />
+<a href="http://localhost:3000">Klik untuk akses E-proposal disini.</a>

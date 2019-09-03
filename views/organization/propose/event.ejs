@@ -1,0 +1,55 @@
+<h3>Kegiatan</h3>
+<div class="form-group">
+    <input type="hidden" class="form-control" id="organizationId" name="organizationId"
+        value="<%= body.organizationId %>">
+</div>
+<div class="form-group">
+    <label for="name">Nama Kegiatan</label>
+    <input type="text" class="form-control" id="name" placeholder="Masukan nama kegiatan" name="name"
+        value="<%= body.name %>">
+    <% if (errors.name) { %>
+    <div class="invalid-feedback">
+        <%= errors.name %>
+    </div>
+    <% } %>
+</div>
+<div class="form-group">
+    <label for="theme">Tema</label>
+    <input type="text" class="form-control" id="theme" placeholder="Masukan tema kegiatan" name="theme"
+        value="<%= body.theme %>">
+    <% if (errors.theme) { %>
+    <div class="invalid-feedback">
+        <%= errors.theme %>
+    </div>
+    <% } %>
+</div>
+<div class="form-group">
+    <label for="theme">Waktu</label>
+    <div class="input-group date" id="datetimepicker-event" data-target-input="nearest">
+        <input type="text" class="form-control datetimepicker-input" placeholder="Masukan waktu kegiatan"
+            data-target="#datetimepicker-event" name="date" />
+        <div class="input-group-append" data-target="#datetimepicker-event" data-toggle="datetimepicker">
+            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <label for="place">Tempat</label>
+    <input type="text" class="form-control" id="place" placeholder="Masukan tempat kegiatan" name="place"
+        value="<%= body.place %>">
+    <% if (errors.place) { %>
+    <div class="invalid-feedback">
+        <%= errors.place %>
+    </div>
+    <% } %>
+</div>
+<div class="form-group">
+    <label for="forms">Bentuk Kegiatan</label>
+    <input type="text" class="form-control" id="place" placeholder="Masukan bentuk kegiatan" name="forms"
+        value="<%= body.forms %>">
+    <% if (errors.forms) { %>
+    <div class="invalid-feedback">
+        <%= errors.forms %>
+    </div>
+    <% } %>
+</div>

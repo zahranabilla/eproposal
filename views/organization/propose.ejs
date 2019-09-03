@@ -1,0 +1,100 @@
+<% include ../partials/header %>
+<h1 class="text-center">
+    Proposal <br />
+</h1>
+<hr />
+
+<form id="regForm" action="/organization/propose" method="POST" class="needs-validation" novalidate>
+    <div class="tab">
+        <% include propose/event %>
+    </div>
+
+    <div class="tab">
+        <% include propose/background %>
+    </div>
+
+    <div class="tab">
+        <% include propose/purpose %>
+    </div>
+
+    <div class="tab">
+        <% include propose/participant %>
+    </div>
+
+    <div class="tab">
+        <% include propose/committee %>
+    </div>
+
+    <div class="tab">
+        <% include propose/schedule %>
+    </div>
+
+    <div class="tab">
+        <% include propose/rundown %>
+    </div>
+
+    <div class="tab">
+        <% include propose/budget %>
+    </div>
+
+    <div class="tab">
+        <% include propose/income %>
+    </div>
+
+    <div style="overflow:auto;">
+        <div style="float:right;">
+            <button type="button" id="prevBtn" class="btn btn-danger" onclick="nextPrev(-1)">Previous</button>
+            <button type="button" id="nextBtn" class="btn btn-primary" onclick="nextPrev(1)">Next</button>
+        </div>
+    </div>
+
+    <!-- Circles which indicates the steps of the form: -->
+    <div style="text-align:center;margin-top:40px;">
+        <span class="step"></span>
+        <span class="step"></span>
+        <span class="step"></span>
+        <span class="step"></span>
+        <span class="step"></span>
+        <span class="step"></span>
+        <span class="step"></span>
+        <span class="step"></span>
+        <span class="step"></span>
+    </div>
+    <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+</form>
+
+<% include ../partials/footer %>
+
+<script src="/static/js/organization/propose/background.js"></script>
+<script src="/static/js/organization/propose/purpose.js"></script>
+<script src="/static/js/organization/propose/participant.js"></script>
+<script src="/static/js/organization/propose/committee.js"></script>
+<script src="/static/js/organization/propose/schedule.js"></script>
+<script src="/static/js/organization/propose/rundown.js"></script>
+<script src="/static/js/organization/propose/budget.js"></script>
+<script src="/static/js/organization/propose/income.js"></script>
+<script src="/static/js/multi-step.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+        $('#datetimepicker-event').datetimepicker({
+            locale: 'en',
+            format: 'YYYY-MM-DD HH:mm'
+        });
+
+        $('.schedule-date').datetimepicker({
+            locale: 'en',
+            format: 'YYYY-MM-DD'
+        });
+        
+        $('.rundown-start').datetimepicker({
+            locale: 'en',
+            format: 'HH:mm'
+        });
+
+        $('.rundown-finish').datetimepicker({
+            locale: 'en',
+            format: 'HH:mm'
+        });
+    });
+</script>
