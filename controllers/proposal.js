@@ -18,6 +18,27 @@ const Division = require('../models/Division')
 const Organization = require('../models/Organization')
 const ProposalRevision = require('../models/ProposalRevision')
 
+module.exports.getAllProposed = (req, res) => {
+    res.render('proposal/coachList')
+}
+
+module.exports.getList = (req, res) => {
+    let user = res.locals.user
+
+    Organization
+        .findOne({
+            where: {
+                userId: user.id
+            }
+        })
+        .then((organization) => {
+            res.render('proposal/list', { organization: organization })
+        })
+        .catch((error) => {
+            throw new Error('Organization Error')
+        })
+}
+
 module.exports.getById = (req, res) => {
     Proposal
         .findOne({

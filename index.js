@@ -102,18 +102,7 @@ app.get('/', ensureLoggedIn('/user/login'), (req, res) => {
     } else if (user.roles == "coach") {
         res.render('coach')
     } else {
-        Organization
-            .findOne({
-                where: {
-                    userId: user.id
-                }
-            })
-            .then((organization) => {
-                res.render('index', { organization: organization })
-            })
-            .catch((error) => {
-                throw new Error('Organization Error')
-            })
+       res.render('index')
     }
 })
 

@@ -10,11 +10,11 @@ const validation = require('../validations/organization')
 const loggedIn = ensureLoggedIn('/user/login') 
 const granted = authorization.ensureGranted
 
-router.get('/', loggedIn, granted, organization.getIndex)
+router.get('/', loggedIn, organization.getIndex)
 
-router.get('/add', loggedIn, granted, organization.getAdd)
+router.get('/add', loggedIn, organization.getAdd)
 
-router.post('/add', loggedIn, granted, validation.add, organization.postAdd)
+router.post('/add', loggedIn, validation.add, organization.postAdd)
 
 router.get('/propose/:organizationId', loggedIn, organization.getPropose)
 

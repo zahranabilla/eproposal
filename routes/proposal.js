@@ -9,6 +9,10 @@ const proposal = require('../controllers/proposal')
 // const loggedIn = ensureLoggedIn('/user/login') 
 // const granted = authorization.ensureGranted
 
+router.get('/', proposal.getAllProposed)
+
+router.get('/list', proposal.getList)
+
 router.get('/id/:id', proposal.getById)
 
 router.post('/propose', proposal.postPropose)
